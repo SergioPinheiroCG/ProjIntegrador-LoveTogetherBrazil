@@ -1,0 +1,49 @@
+/* Configuração do contêiner do mapa */
+#map {
+    width: 100%;
+    height: calc(100vh - 100px); /* Altura dinâmica, considerando o espaço do título */
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Impede rolagem */
+}
+
+/* Contêiner para a logo */
+.logo-container {
+    position:absolute;
+    top: 60px; /* Distância do topo */
+    left:90px; /* Distância da esquerda */
+    z-index: 1000; /* Garante que a logo fique sobre o mapa */
+}
+
+/* Estilo da logo */
+.logo {
+    width: 200px; /* Ajuste o tamanho conforme necessário */
+    height: auto;
+}
+
+/* Ajuste do contêiner da página */
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    height: 100vh; /* Ajusta para altura total da viewport */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Estilo para o texto */
+h1.tn-atom {
+    text-align: center;
+    color: red;
+    font-family: Arial, sans-serif;
+    margin-bottom: 20px; /* Espaço entre o texto e o mapa */
+}
+
+/* Remove margens e padding gerais */
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
