@@ -8,11 +8,12 @@ Este projeto foi desenvolvido como parte da disciplina **Projeto Integrador** so
 
 ## 👥 Integrantes
 
-- **Sérgio Magno Castor Pinheiro**
+
 - **Gustavo Nobrega de Carvalho**
 - **Gustavo Tomio Magalhaes Kubo**
 - **Maria Gabriela Pereira da Silva**
 - **Rayanne Vanessa Figueiredo da Silva**
+- **Sérgio Magno Castor Pinheiro**
 - **Thiago Limeira da Alencar**
 
 ## 🛠️ Tecnologias Utilizadas
