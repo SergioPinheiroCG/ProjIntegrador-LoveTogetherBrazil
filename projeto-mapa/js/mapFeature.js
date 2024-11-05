@@ -7,18 +7,37 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-// Função para exibir o tooltip com o valor da doação ao passar o mouse sobre o estado
+// Função para exibir o tooltip ou popup com o valor da doação e a logo ao passar o mouse sobre o estado
 function highlightFeature(e) {
     const layer = e.target;
     const stateCode = layer.feature.properties.sigla;
     const donationAmount = donationsData[stateCode] || 0;
 
-    // Exibe o valor de doações no tooltip
-    layer.bindTooltip(`R$ ${donationAmount.toLocaleString('pt-BR')}`, {
-        permanent: false,
-        direction: 'center',
-        className: 'donation-tooltip'
-    }).openTooltip();
+    // URL da logo da LTB
+    const logoUrl = '/projeto-mapa/img/logo_-8.png';
+
+    // Conteúdo do tooltip/popup com a logo e o valor da doação
+    let content = `<img src="${logoUrl}" alt="Logo LTB" style="width: 20px; vertical-align: middle; margin-right: 5px;"> R$ ${donationAmount.toLocaleString('pt-BR')}`;
+
+    // Se o estado for Paraíba, adiciona "Mais Informações" com um link clicável
+    if (stateCode === "PB") {
+        content += `<br><span id="more-info-link" style="color: blue; text-decoration: underline; cursor: pointer;">Mais informações</span>`;
+        layer.bindPopup(content).openPopup();
+
+        // Adiciona um evento de clique para o link "Mais informações"
+        layer.on("popupopen", () => {
+            document.getElementById("more-info-link").addEventListener("click", () => {
+                window.open("https://drive.google.com/file/d/1P3O5pBIif_CMpXVvz2Y4Cm-YmtObsiYb/view", "_blank");
+            });
+        });
+    } else {
+        // Caso contrário, exibe um tooltip com a logo e o valor da doação
+        layer.bindTooltip(content, {
+            permanent: false,
+            direction: 'center',
+            className: 'donation-tooltip'
+        }).openTooltip();
+    }
 
     // Destaca o estado ao passar o mouse
     layer.setStyle({
@@ -32,6 +51,7 @@ function highlightFeature(e) {
 function resetHighlight(e) {
     const layer = e.target;
     layer.closeTooltip();
+    layer.closePopup();
     geojson.resetStyle(layer);
 }
 
